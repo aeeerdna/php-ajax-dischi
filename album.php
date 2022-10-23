@@ -23,4 +23,9 @@
     <p class="lh-1 mb-1">
         <?= $songs['year']?>
     </p>
+
+    <!-- genere -->
+    <p class="lh-1 mb-1 text-uppercase">
+        <?= $songs['genre']?>
+    </p>
 </div>
