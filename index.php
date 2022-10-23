@@ -16,12 +16,14 @@
         // inclusione database canzoni
         include __DIR__ . '/dischi.php';
 
-        if (isset($_GET['reserch_text'])){
-            $reserch_text = strtolower ($_GET['reserch_text']);
+        $research_text = '';
+
+        if (isset($_GET['research_text'])){
+            $research_text = strtolower ($_GET['research_text']);
             $data = [];
             
             foreach($databaseDischi as $songs){
-                if(strlen($reserch_text) === 0 || strtolower($songs['genre']) == $reserch_text){
+                if(strlen($research_text) === 0 || strtolower($songs['genre']) == $research_text){
                     $data[] = $songs;
                 }
             }
@@ -33,7 +35,7 @@
         <div class="container">
             <!-- ricerca -->
             <form action="./index.php" method="get">
-                <input type="text" name="reserch_text">
+                <input type="text" name="research_text" value="<?= $research_text ?>">
                 <input type="submit" value="Search">
             </form>
         </div>
