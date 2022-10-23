@@ -7,6 +7,17 @@
     <title>Dischi</title>
 </head>
 <body>
-    Ajax dischi prova
+
+<div class="container">
+    <div class="songs-container">
+        <?php
+            include __DIR__ . '/dischi.php';
+        
+            foreach($databaseDischi as $songs){
+
+            }
+        ?>
+    </div>
+</div>
 </body>
 </html>
