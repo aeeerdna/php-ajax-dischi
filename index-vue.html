@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="style/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.1.3/axios.min.js"
+      integrity="sha512-0qU9M9jfqPw6FKkPafM3gy2CBAvUWnYVOfNPDYKVuRTel1PrciTj+a9P3loJB+j0QmN2Y0JYQmkBBS8W+mbezg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.7.13/vue.min.js"
+      integrity="sha512-9PmLIATEd4w0OxdTHq61p12lQqa8OtDC6nXu0+S1Icb800oxoADle+gaPfmAXLa35KSvk/6bGeNRfi3nq0Hvvw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="js/script.js" defer></script>
+    <title>Dischi vue</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <header>
+        <div class="container">
+          <!-- ricerca -->
+          <input type="text" name="research_text" v-model="research_text" />
+          <input
+            type="submit"
+            value="Search"
+            @click="getSongs(research_text)"
+          />
+        </div>
+      </header>
+
+      <main>
+        <!-- container canzoni -->
+        <div class="container">
+          <div class="songs-container d-flex flex-wrap">
+            <div v-for="song in songs" :key="song.title">
+              <!-- canzoni -->
+              <div class="album">
+                <!-- cover album-->
+                <div class="mb-3">
+                  <img :src="song.cover" :alt="song.title" />
+                </div>
+
+                <!-- titolo canzone -->
+                <h3 class="text-uppercase">{{song.title}}</h3>
+
+                <!-- album -->
+                <p class="lh-1 mb-1">{{song.album}}</p>
+
+                <!-- autore -->
+                <p class="lh-1 mb-1">{{song.author}}</p>
+
+                <!-- anno -->
+                <p class="lh-1 mb-1">{{song.year}}</p>
+
+                <!-- genere -->
+                <p class="lh-1 mb-1 text-uppercase">{{song.genre}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
