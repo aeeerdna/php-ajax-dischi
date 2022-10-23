@@ -12,28 +12,55 @@
 </head>
 <body>
 
-    <!-- container canzoni -->
-    <div class="container">
-        <div class="songs-container d-flex flex-wrap">
-            <?php
-                // inclusione database canzoni
-                include __DIR__ . '/dischi.php';
+    <?php
+        // inclusione database canzoni
+        include __DIR__ . '/dischi.php';
+
+        if (isset($_GET['reserch_text'])){
+            $reserch_text = strtolower ($_GET['reserch_text']);
+            $data = [];
             
-                foreach($databaseDischi as $songs){
+            foreach($databaseDischi as $songs){
+                if(strlen($reserch_text) === 0 || strtolower($songs['genre']) == $reserch_text){
+                    $data[] = $songs;
+                }
+            }
+            $databaseDischi = $data;
+        }
+    ?>
 
-            ?>
+    <header>
+        <div class="container">
+            <!-- ricerca -->
+            <form action="./index.php" method="get">
+                <input type="text" name="reserch_text">
+                <input type="submit" value="Search">
+            </form>
+        </div>
+    </header>
 
-            <div>
+    <main>
+        <!-- container canzoni -->
+        <div class="container">
+            <div class="songs-container d-flex flex-wrap">
+                <?php             
+                    foreach($databaseDischi as $songs){
+
+                ?>
+
+                <div>
+                    <?php
+                        // inclusione formattazione album
+                        include __DIR__ . '/album.php'
+                    ?>
+                </div>
+
                 <?php
-                    // inclusione formattazione album
-                    include __DIR__ . '/album.php'
+                    }
                 ?>
             </div>
-
-            <?php
-                }
-            ?>
         </div>
-    </div>
+    </main>
+   
 </body>
 </html>
